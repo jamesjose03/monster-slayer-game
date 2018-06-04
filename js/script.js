@@ -20,20 +20,29 @@ new Vue ({
                 return;
             }
            
-            damage = this.damageDealt(5,12);
-            this.playerHealth -= damage;
-
-            
-            this.checkWin();
+            this.monsterAttacks();
         },
         special_attack: function(){
+            var damage = this.damageDealt(10,20)
+            this.monsterHealth -= damage;
 
+            if(this.checkWin()){
+                return;
+            }
+            this.monsterAttacks();
+           
+            
         },
         heal: function(){
 
         },
         give_up: function(){
 
+        },
+        monsterAttacks: function(){
+            damage = this.damageDealt(5,12);
+            this.playerHealth -= damage;
+            this.checkWin();
         },
         damageDealt: function(min,max){
             return Math.max(Math.floor(Math.random() * max) + 1 , min);
